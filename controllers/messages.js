@@ -34,7 +34,7 @@ exports.create = async (req, res) => {
   const message = await messagesModel.create({
     body,
     chatID: isChatExist._id,
-    userID: req.user._id,
+    senderID: req.user._id,
   });
 
   return res.status(201).json(message);
@@ -49,7 +49,7 @@ exports.getAll = async (req, res) => {
 
   const messages = await messagesModel
     .find({ chatID: chat._id }, "body userID")
-    .populate("userID", "name")
+    .populate("senderID", "name")
     .lean();
 
   return res.status(200).json(messages);

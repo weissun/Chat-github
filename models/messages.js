@@ -11,7 +11,7 @@ const schema = mongoose.Schema(
       ref: "chats",
       required: true,
     },
-    userID: {
+    senderID: {
       type: mongoose.Types.ObjectId,
       ref: "users",
       required: true,

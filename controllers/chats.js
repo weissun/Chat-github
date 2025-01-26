@@ -1,11 +1,11 @@
 const chatsModel = require("./../models/chats");
 
 exports.create = async (req, res) => {
-  const { userTwoID } = req.body;
+  const { senderTwoID } = req.body;
   const chatExist = await chatsModel
     .findOne({
-      userOneID: req.user._id,
-      userTwoID,
+      senderOneID: req.user._id,
+      senderTwoID,
     })
     .lean();
 
@@ -15,12 +15,15 @@ exports.create = async (req, res) => {
     });
   }
 
-  if (userTwoID === req.user._id.toString()) {
+  if (senderTwoID === req.user._id.toString()) {
     return res.json({
       message: "Choose AnyOne For Chat, No YouSelf",
     });
   }
 
-  const chat = await chatsModel.create({ userOneID: req.user._id, userTwoID });
+  const chat = await chatsModel.create({
+    senderOneID: req.user._id,
+    senderTwoID,
+  });
   return res.status(201).json(chat);
 };

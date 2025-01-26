@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema(
   {
-    userOneID: {
+    senderOneID: {
       type: mongoose.Types.ObjectId,
       ref: "users",
       required: true,
     },
-    userTwoID: {
+    senderTwoID: {
       type: mongoose.Types.ObjectId,
       ref: "users",
       required: true,
